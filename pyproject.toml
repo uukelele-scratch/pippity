@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pippity"
-version = "1.0.1"
+version = "1.0.2"
 authors = [{ name = "uukelele-scratch", email = "robustrobot11@gmail.com" }]
 description = "Install your PyPi packages without access to pip. Install packages, straight from inside your script."
 readme = "README.md"
