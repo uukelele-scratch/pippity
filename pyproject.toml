@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pippity"
+version = "1.0.0"
+authors = [{ name = "uukelele-scratch", email = "robustrobot11@gmail.com" }]
+description = "Install your PyPi packages without access to pip. Install packages, straight from inside your script."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/uukelele-scratch/pippity"
+Repository = "https://github.com/uukelele-scratch/pippity"
