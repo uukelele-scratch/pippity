@@ -7,9 +7,9 @@ class InvalidArgumentsError(TypeError):
 
 class InstallResult():
 	def __init__(self, ok, stdout, stderr):
-	self.ok = ok
-	self.stdout = stdout
-	self.stderr = stderr
+		self.ok = ok
+		self.stdout = stdout
+		self.stderr = stderr
 
 def install(package: Optional[str] = None, packages: Optional[List[str]] = None) -> InstallResult:
 	"""
