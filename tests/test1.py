@@ -1,4 +1,4 @@
-from src.pippity import pippity
+import pippity
 
 result = pippity.install("numpy")
 
