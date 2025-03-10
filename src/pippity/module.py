@@ -41,9 +41,7 @@ def install(packages: Union[str, List[str]]) -> InstallResult:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
-        if "error" in result.stderr.decode().strip().lower():
-            return InstallResult(False, result.stdout.decode(), result.stderr.decode())
-        return InstallResult(True, result.stdout.decode(), result.stderr.decode())
+        return InstallResult(not ("error" in result.stderr.decode().strip().lower()), result.stdout.decode(), result.stderr.decode())
     
     except subprocess.CalledProcessError as e:
         return InstallResult(False, "", e.stderr.decode())
