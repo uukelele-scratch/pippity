@@ -1,9 +1,6 @@
 import sys
 import subprocess
-from typing import List, Optional
-
-class InvalidArgumentsError(TypeError):
-    pass
+from typing import List, Union
 
 class InstallResult():
     def __init__(self, ok, stdout, stderr):
@@ -11,30 +8,26 @@ class InstallResult():
         self.stdout = stdout
         self.stderr = stderr
 
-def install(package: Optional[str] = None, packages: Optional[List[str]] = None) -> InstallResult:
+def install(packages: Union[str, List[str]]) -> InstallResult:
     """
     Installs one or more Python packages using pip.
 
     Args:
-        package (str, optional): The name of a single package to install.
-        packages (list, optional): A list of package names to install.
+        packages (str or list of str): The name of a single package or a list of package names to install.
+
 
     Returns:
         InstallResult: An object containing the result of the installation.
-
-    Raises:
-        InvalidArgumentsError: If invalid arguments are provided.
-    """
     
-    if package and packages:
-        raise InvalidArgumentsError("Cannot provide package[s] in both list and string form.")
+    """
 
-    if package:
-        packages_to_install = [package]
-    elif packages:
+    if isinstance(packages, str):
+        packages_to_install = [packages]
+    elif isinstance(packages, list):
         packages_to_install = packages
     else:
-        raise InvalidArgumentsError("Must provide package[s] in either list or string form.")
+        raise TypeError("Packages must be a string or a list of strings.")
+
 
     if not sys.executable:
         return InstallResult(False, "", "Python Executable not found.")
@@ -53,5 +46,5 @@ def install(package: Optional[str] = None, packages: Optional[List[str]] = None)
     except subprocess.CalledProcessError as e:
         return InstallResult(False, "", e.stderr.decode())
 
-    # except Exception as e:
-    #    return InstallResult(False, "", str(e))
+    except Exception as e:
+        return InstallResult(False, "", str(e))
