@@ -38,10 +38,13 @@ def install(package: Optional[str] = None, packages: Optional[List[str]] = None)
 
     if not sys.executable:
         return InstallResult(False, "", "Python Executable not found.")
+
+    cmd = [sys.executable, "-m", "pip", "install"]
+    cmd.extend(packages_to_install)
     
     try:
         result = subprocess.run(
-            [sys.executable, "-m", "pip", "install", *packages_to_install],
+            cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
