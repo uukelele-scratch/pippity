@@ -41,7 +41,7 @@ def install(package: Optional[str] = None, packages: Optional[List[str]] = None)
     
     try:
         result = subprocess.run(
-            [sys.executable, "-m", "pip", "install"] + packages_to_install,
+            [sys.executable, "-m", "pip", "install", *packages_to_install],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
         )
