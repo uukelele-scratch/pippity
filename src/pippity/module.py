@@ -50,5 +50,5 @@ def install(package: Optional[str] = None, packages: Optional[List[str]] = None)
     except subprocess.CalledProcessError as e:
         return InstallResult(False, "", e.stderr.decode())
 
-    except Exception as e:
-        return InstallResult(False, "", str(e))
+    # except Exception as e:
+    #    return InstallResult(False, "", str(e))
